@@ -5,6 +5,7 @@ import '../network_utils.dart';
 import '../services/firebase_service.dart';
 
 class LectureCreationScreen extends StatefulWidget {
+
   const LectureCreationScreen({super.key});
 
   @override
@@ -93,6 +94,7 @@ class _LectureCreationScreenState extends State<LectureCreationScreen> {
      _courseCodeController.clear();
      _lectureNameController.clear();
      _titleController.clear();
+     Navigator.pop(context);
     } else {
       // Show an error message if any field is empty
       ScaffoldMessenger.of(context).showSnackBar(

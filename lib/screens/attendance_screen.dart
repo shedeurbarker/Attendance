@@ -13,18 +13,23 @@ import '../services/lecture_service.dart';
   AttendanceScreenState createState() => AttendanceScreenState();
 }
 
-
-
 class AttendanceScreenState extends State<AttendanceScreen> {
   final FirebaseService _firebaseService = FirebaseService();
   final AttendanceService _attendanceService = AttendanceService();
   late Student _currentStudent;
   bool _isAttendanceRecorded = false;
+  String _selectedLectureTitle = 'Attendance';
+
+  void _updateAppBarTitle() {
+    setState(() {
+      _selectedLectureTitle = widget.lecture.title;
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-    // Load current student from Firebase (replace with actual implementation)
+    _updateAppBarTitle();
     _loadCurrentStudent();
   }
 
@@ -57,7 +62,7 @@ class AttendanceScreenState extends State<AttendanceScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Attendance'),
+        title: Text(_selectedLectureTitle),
       ),
       body: Center(
         child: Column(
